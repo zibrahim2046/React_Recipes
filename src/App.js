@@ -1,11 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 
 const App = () => {
     const APP_ID = 'ea64e37b';
     const APP_KEY = '2999b28eb1a5b454fa702c85da45ebad';
-    const exampleRequest = `https://api.edamam.com/search?q=chicken&app_id=${APP_ID}&app_key=${APP_KEY}`;
+
+    useEffect(() => {
+        getRecipes();
+    }, []);
+
+    const getRecipes = async () => {
+        const response = await fetch(`https://api.edamam.com/search?q=chicken&app_id=${APP_ID}&app_key=${APP_KEY}`);
+        const data = response.json();
+        console.log(data);
+    };
 
     return (
         <div className='App'>
